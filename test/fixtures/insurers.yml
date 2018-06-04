@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: 
+  name: 
+  contact_name: 
+  contact_phone: 1
+
+two:
+  code: 
+  name: 
+  contact_name: 
+  contact_phone: 1

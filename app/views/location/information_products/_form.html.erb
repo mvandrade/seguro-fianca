@@ -1,0 +1,75 @@
+<div style="min-height: 550px;">
+    <div class="row">
+        <div class="col-lg-8">
+            <h4 class="page-header">Informações de Produtos</h4>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+        <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-8">
+
+            <% if @information_product.errors.any? %>
+                <div class="alert alert-danger">
+                    <ul>
+                        <% @information_product.errors.full_messages.each do |message| %>
+                        <li> <%= message %> </li>
+                        <% end %>
+                    <ul>
+                </div>
+            <% end %>
+
+        <%= form_for([:location, @information_product.product, @information_product]) do |form| %>
+          <div class="panel panel-default">
+            <div class="panel-heading col-lg-12" style="height: 50px" >
+              <% if @information_product.id? %>
+                  <%= "Informação do Produto #{@name_product} (Editar)" %>
+              <% else %>
+                  <%= "Informação do Produto #{@name_product} (Novo)" %>
+              <% end %>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body ">
+              <div class="row">
+                <div class="col-lg-4" style="margin-top: 10px">
+                  <div class="form-group">
+                      <label>Vigência</label>
+                      <%= form.date_field :validity, class: "form-control" %>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6" style="margin-top: 10px">
+                  <div class="form-group">
+                      <label>Valor Mínimo Parcela (R$)</label>
+                      <%= form.text_field :minimum_plot_value, class: "form-control money2" %>
+                  </div>
+                </div>
+                <div class="col-lg-6" style="margin-top: 10px">
+                  <div class="form-group">
+                      <label>Valor Mínimo Apólice (R$)</label>
+                      <%= form.text_field :minimum_policy_value, class: "form-control money2" %>
+                  </div>
+                </div>
+                <div class="col-lg-6" style="margin-top: 10px">
+                  <div class="form-group">
+                      <label>% Máximo de Desconto</label>
+                      <%= form.text_field :discount_limit, class: "form-control percent" %>
+                  </div>
+                </div>
+                <div class="col-lg-6" style="margin-top: 10px">
+                  <div class="form-group">
+                      <label>% Máximo de Comissão</label>
+                      <%= form.text_field :commission_limit, class: "form-control percent" %>
+                  </div>
+                </div>
+              </div>
+                <%= form.submit 'Salvar', class: "btn btn-primary"  %>
+                <%= link_to 'Voltar', location_product_information_products_path(@information_product.product_id), class: "btn btn-default" %>
+            </div>
+          </div>
+          <!-- /.col-lg-12 -->
+        <% end %>
+        </div>
+    </div>
+</div>

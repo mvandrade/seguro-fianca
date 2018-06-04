@@ -1,0 +1,2 @@
+module Location::ProdutcsHelper
+end

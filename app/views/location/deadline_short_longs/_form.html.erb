@@ -1,0 +1,73 @@
+<div style="min-height: 550px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="page-header">Prazo Curto e Longo</h4>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <% if @deadline_short_long.errors.any? %>
+        <div class="alert alert-danger">
+            <ul>
+                <% @deadline_short_long.errors.full_messages.each do |message| %>
+                <li> <%= message %> </li>
+                <% end %>
+            <ul>
+        </div>
+    <% end %>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-8">
+            <%= form_for([:location, @deadline_short_long]) do |form| %>
+                <div class="panel panel-default">
+                    <div class="panel-heading col-lg-12" style="height: 50px" >
+                    <% if @deadline_short_long.id? %>
+                        Prazo Curto e Longo (Editar)
+                    <% else %>
+                        Prazo Curto e Longo (Novo)
+                    <% end %>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body ">
+
+                        <div class="row">
+                            <div class="col-lg-2" style="margin-top: 10px">
+                                <div class="form-group">
+                                    <label>Código</label>
+                                    <%= form.text_field :code, class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="col-lg-10" style="margin-top: 10px">
+                                <div class="form-group">
+                                    <label>Descrição</label>
+                                    <%= form.text_field :description, class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <%= link_to_add_association "Adicionar", form, :percent_deadlines,
+                                 'data-association-insertion-method' => 'append', class: "btn btn-info" %>
+                                <fieldset>
+                                    <legend><h5>Coeficientes</h5></legend>
+                                            <%= form.fields_for :percent_deadlines do |percent_deadline| %>
+                                                <%= render 'percent_deadline_fields', f: percent_deadline%>
+                                            <% end %>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                        <% if @deadline_short_long.id? %>
+                            <% if @deadline_short_long.pendent? %>
+                                <%= render :partial => 'button_pendent' %>
+                            <% elsif @deadline_short_long.approved? %>
+                                <%= render :partial => 'button_approved' %>
+                            <% end %>
+                        <% else %>
+                            <%= render :partial => 'button_new' %>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,183 @@
+<div style="min-height: 550px;">
+    <div class="row">
+        <div class="col-lg-8">
+            <h4 class="page-header">Informações de Coberturas</h4>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+        <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-8">
+
+          <% if @information_coverage.errors.any? %>
+              <div class="alert alert-danger">
+                  <ul>
+                      <% @information_coverage.errors.full_messages.each do |message| %>
+                      <li> <%= message %> </li>
+                      <% end %>
+                  <ul>
+              </div>
+          <% end %>
+
+        <%= form_for([:location, @information_coverage.composition_product, @information_coverage]) do |form| %>
+          <div class="panel panel-default">
+            <div class="panel-heading col-lg-12" style="height: 50px" >
+              <% if @information_coverage.id? %>
+                  <%= "Composição - Produto (#{@name_product.name}) - Cobertura (#{@name_cover.name}) - (Editar)" %>
+              <% else %>
+                  <%= "Composição - Produto (#{@name_product.name}) - Cobertura (#{@name_cover.name}) - (Novo)" %>
+              <% end %>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body ">
+              <div class="row">
+                <div class="col-lg-4" style="margin-top: 10px">
+                  <div class="form-group">
+                      <label>Inicio de Vigência</label>
+                      <%= form.date_field :validity, class: "form-control" %>
+                  </div>
+                </div>
+                <div class="col-lg-4" style="margin-top: 10px">
+                  <div class="form-group">
+                      <label>Fim de Vigência</label>
+                      <%= form.text_field :final_term, class: "form-control", readonly: true %>
+                  </div>
+                </div>
+                <div class="col-lg-4" style="margin-top: 10px">
+                  <div class="form-group">
+                      <label>Multiplicador IS (Qtd)</label>
+                      <%= form.text_field :multiplier_importance_value, class: "form-control money2" %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                      <label>Valor Prêmio Mínimo (R$)</label>
+                      <%= form.text_field :minimum_premium_reference, class: "form-control money2" %>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                      <label>Valor Mínimo de IS (R$)</label>
+                      <%= form.text_field :minimum_importance_value, class: "form-control money2" %>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                      <label>Valor Máximo de IS (R$)</label>
+                      <%= form.text_field :maximum_importance_value, class: "form-control money2" %>
+                  </div>
+                </div>
+              </div>
+              <div classs="row">
+                <div class="col-lg-4">
+                    <div class="checkbox">
+                        <label>
+                            <%= form.check_box :compulsory_coverage %> Cobertura Obrigatória.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                      <label>% Mínimo da Básica</label>
+                      <%= form.text_field :minimum_reference, class: "form-control percent" %>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                      <label>% Máximo da Básica</label>
+                      <%= form.text_field :maximum_reference, class: "form-control percent" %>
+                  </div>
+                </div>
+              </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>Usar para Prêmio</label>
+                            <%= form.collection_radio_buttons :type_use, options_for_type_uses, :id, :description do |b| %>
+                                <div class="radio">
+                                        <%= b.label {b.radio_button + b.text} %>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>% Taxa Pura</label>
+                            <%= form.text_field :rate_pure, class: "form-control percent", id: "rate", readonly: false %>
+                        </div>
+                        <div class="form-group">
+                            <label>Valor Fixo (R$)</label>
+                            <%= form.text_field :fixed_value, class: "form-control money2", id: "fixed", readonly: true  %>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>Tipo Cobertura</label>
+                            <%= form.collection_radio_buttons :type_coverage, options_for_type_coverages, :id, :description do |b| %>
+                                <div class="radio">
+                                    <%= b.label {b.radio_button + b.text} %>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Texto para Franquia</label>
+                            <%= form.text_field :description_franchise, class: "form-control" %>
+                        </div>
+                    </div>
+                </div>
+                <% if @information_coverage.id? %>
+                    <% if @information_coverage.pendent? %>
+                        <%= render :partial => 'button_pendent' %>
+                    <% elsif @information_coverage.approved? %>
+                        <%= render :partial => 'button_approved' %>
+                    <% elsif @information_coverage.locked_up? %>
+                        <%= render :partial => 'button_locked_up' %>
+                    <% end %>
+                <% else %>
+                    <%= render :partial => 'button_new' %>
+                <% end %>
+                </div>
+            </div>
+          </div>
+          <!-- /.col-lg-12 -->
+        <% end %>
+        </div>
+    </div>
+</div>
+<script>
+
+$(document).ready(function(){
+
+    if( $('#information_coverage_type_use_rate').prop('checked')) {
+        $("#fixed").prop("readonly", true);
+        $("#rate").prop("readonly", false);
+    }else{
+        $("#fixed").prop("readonly", false);
+        $("#rate").prop("readonly", true);
+    }
+
+    $('#information_coverage_type_use_rate').bind('click', function(){
+        $("#fixed").prop("readonly", true);
+        $("#rate").prop("readonly", false);
+        $("#fixed").val("0");
+        $("#rate").val("");
+    });
+
+    $('#information_coverage_type_use_value').bind('click', function(){
+        $("#fixed").prop("readonly", false)
+        $("#rate").prop("readonly", true)
+        $("#fixed").val("");
+        $("#rate").val("0");
+    });
+
+})
+
+</script>

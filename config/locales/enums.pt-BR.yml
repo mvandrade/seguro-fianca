@@ -1,0 +1,21 @@
+pt-BR:
+  enums:
+    information_coverage:
+      type_coverage:
+        basic: Básica
+        additional: Adicional
+        service: Serviço
+        clause: Cláusula
+      type_use:
+        value: Valor Fixo
+        rate: Taxa Pura
+      status:
+        pendent: Pendente
+        approved: Aprovado
+        locked_up: Encerrado 
+    deadline_short_long:
+      status:
+        pendent: Pendente
+        approved: Aprovado
+        locked_up: Encerrado 
+

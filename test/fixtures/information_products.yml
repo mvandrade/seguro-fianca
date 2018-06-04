@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  validity: 2018-04-23
+  minimun_plot_value: 9.99
+  minimum_policy_value: 9.99
+  dicount_limit: 9.99
+  commission_limit: 9.99
+  product: one
+
+two:
+  validity: 2018-04-23
+  minimun_plot_value: 9.99
+  minimum_policy_value: 9.99
+  dicount_limit: 9.99
+  commission_limit: 9.99
+  product: two

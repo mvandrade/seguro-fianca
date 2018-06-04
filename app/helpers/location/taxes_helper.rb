@@ -1,0 +1,2 @@
+module Location::TaxesHelper
+end

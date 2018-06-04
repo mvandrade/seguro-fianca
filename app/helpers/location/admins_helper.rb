@@ -1,0 +1,2 @@
+module Location::AdminsHelper
+end

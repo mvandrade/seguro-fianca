@@ -1,0 +1,2 @@
+module Location::GroupBranchesHelper
+end

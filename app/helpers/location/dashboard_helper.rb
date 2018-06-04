@@ -1,0 +1,2 @@
+module Location::DashboardHelper
+end

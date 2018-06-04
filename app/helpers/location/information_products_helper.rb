@@ -1,0 +1,2 @@
+module Location::InformationProductsHelper
+end

@@ -1,0 +1,96 @@
+<div style="min-height: 550px;">
+  <div class="row">
+      <div class="col-lg-12">
+          <h4 class="page-header">Informações de Produto e Coberura</h4>
+      </div>
+      <!-- /.col-lg-12 -->
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-heading col-lg-11" style="height: 50px" >
+          <%= "Vigência(s) Composição - Produto (#{@name_product.name}) - Cobertura (#{@name_cover.name})" %>
+        </div>
+        <div class="panel-heading col-lg-1" style="height: 50px">
+          <%= link_to new_location_composition_product_information_coverage_path, class: 'btn btn-default btn-circle pull-right' do %>
+            <i class="fa fa-plus"></i>
+          <% end %>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+          <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+              <div class="col-sm-6" style="margin-top: 10px">
+                  <label>Mostrar
+                    <select name="dataTables-example_length" aria-controls="dataTables-example" class="form-control input-sm">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select> linhas
+                  </label>
+              </div>
+              <div class="col-sm-6" style="margin-top: 10px">
+                <div id="dataTables-example_filter" class="dataTables_filter">
+                  <label>Buscar:
+                    <input class="form-control input-sm" placeholder="" aria-controls="dataTables-example" type="search">
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;" width="100%">
+                  <thead>
+                    <tr role="row">
+                      <th>#</th>
+                      <th>Vigência</th>
+                      <th>Final de Vigência</td>
+                      <th>Tipo Cobertura</th>
+                      <th>Obrigatória</th>
+                      <th>Situação</th>
+                      <th>Data Situação</th>
+                      <th colspan="2">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @information_coverages.each do |information_coverage| %>
+                      <tr class="gradeA odd" role="row">
+                        <td><%= information_coverage.id %></td>
+                        <td><%= information_coverage.validity %></td>
+                        <td><%= information_coverage.final_term %></td>
+                        <td><%= information_coverage.type_coverage_i18n %></td>
+                        <td><%= information_coverage.compulsory %></td>
+                        <td><%= information_coverage.status_i18n %></td>
+                        <td><%= information_coverage.date_status %></td>                         
+                        <td style="width: 65px">
+                          <%= link_to edit_location_composition_product_information_coverage_path(information_coverage.composition_product, information_coverage), class: "btn btn-default btn-circle" do %>
+                            <i class="fa fa-edit"></i>
+                          <% end%>
+                          <% if information_coverage.pendent? %>
+                            <%= link_to location_composition_product_information_coverage_path(information_coverage.composition_product, information_coverage), method: :delete,
+                            data: {confirm: "A informação da vigência da composição produto será escluido, confirma ?"},
+                            class:"btn btn-default btn-circle" do %>
+                              <i class="fa fa-trash-o"></i>
+                            <% end %>
+                          <% else %>
+                            <%= link_to location_composition_product_information_coverage_path(information_coverage.composition_product, information_coverage), method: :delete,
+                            data: {confirm: "A informação da vigência da composição produto será escluido, confirma ?"},
+                            class:"btn btn-default btn-circle  disabled" do %>
+                              <i class="fa fa-trash-o"></i>
+                            <% end %>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

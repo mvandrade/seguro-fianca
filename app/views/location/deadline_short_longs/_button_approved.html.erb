@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-lg-6">
+        <%= submit_tag 'Salvar', class: "btn btn-primary disabled"  %>
+        <%= link_to 'Aprovar', location_deadline_short_longs_update_status_path(@deadline_short_long),
+        data: {confirm: "A atualização da situação, encerra as vigência(s) anterior(es), confirma ?"},
+        class: "btn btn-outline btn-success disabled" %>
+        <%= link_to 'Voltar', location_deadline_short_longs_path, class: "btn btn-default" %>
+    </div>
+    <div class="col-lg-6">
+        <h5 class="pull-right text-success"><%= "Situação: #{@deadline_short_long.status_i18n} em #{@deadline_short_long.date_status}" %> </h5>
+    </div>
+</div>

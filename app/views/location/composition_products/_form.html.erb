@@ -1,0 +1,53 @@
+<div style="min-height: 550px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="page-header">Composições de Produtos</h4>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+        <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-8">
+
+            <% if @composition_product.errors.any? %>
+                <div class="alert alert-danger">
+                    <ul>
+                        <% @composition_product.errors.full_messages.each do |message| %>
+                        <li> <%= message %> </li>
+                        <% end %>
+                    <ul>
+                </div>
+            <% end %>
+
+            <%= form_for([:location, @composition_product]) do |form| %>
+                <div class="panel panel-default">
+                    <div class="panel-heading col-lg-12" style="height: 50px" >
+                        <% if @composition_product.id? %>
+                            Composição de Produto (Editar)
+                        <% else %>
+                            Composição de Produto (Novo)
+                        <% end %>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body ">
+                          <div class="col-lg-12" style="margin-top: 10px">
+                              <div class="form-group">
+                                  <label>Produto</label>
+                                  <%= collection_select(:composition_product, :product_id, @product_options, :id, :name, {}, {:class=>"form-control"}) %>
+                              </div>
+                          </div>
+                          <div class="col-lg-12" style="margin-top: 10px">
+                              <div class="form-group">
+                                  <label>Cobertura</label>
+                                  <%= collection_select(:composition_product, :cover_id, @cover_options, :id, :name, {}, {:class=>"form-control", multiple: true, id: "selecttwo" }) %>
+                              </div>
+                          </div>
+
+                        <%= form.submit 'Salvar', class: "btn btn-primary"  %>
+                        <%= link_to 'Voltar', location_composition_products_path, class: "btn btn-default" %>
+                     </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

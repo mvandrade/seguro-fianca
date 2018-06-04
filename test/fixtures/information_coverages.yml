@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  validity: 2018-05-09 18:14:54
+  final_term: 2018-05-09 18:14:54
+  munimum_importance_value: 9.99
+  maximun_importance_value: 9.99
+  minimum_reference: 9.99
+  maximum_reference: 9.99
+  minimum_premium_reference: 9.99
+  compulsory_coverage: false
+  type_coverage: 1
+  description_franchise: MyString
+  status: 1
+  date_status: 2018-05-09 18:14:54
+  composition_product: one
+
+two:
+  validity: 2018-05-09 18:14:54
+  final_term: 2018-05-09 18:14:54
+  munimum_importance_value: 9.99
+  maximun_importance_value: 9.99
+  minimum_reference: 9.99
+  maximum_reference: 9.99
+  minimum_premium_reference: 9.99
+  compulsory_coverage: false
+  type_coverage: 1
+  description_franchise: MyString
+  status: 1
+  date_status: 2018-05-09 18:14:54
+  composition_product: two

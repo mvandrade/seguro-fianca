@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Validity:</strong>
+  <%= @information_coverage.validity %>
+</p>
+
+<p>
+  <strong>Final term:</strong>
+  <%= @information_coverage.final_term %>
+</p>
+
+<p>
+  <strong>Munimum importance value:</strong>
+  <%= @information_coverage.munimum_importance_value %>
+</p>
+
+<p>
+  <strong>Maximun importance value:</strong>
+  <%= @information_coverage.maximun_importance_value %>
+</p>
+
+<p>
+  <strong>Minimum reference:</strong>
+  <%= @information_coverage.minimum_reference %>
+</p>
+
+<p>
+  <strong>Maximum reference:</strong>
+  <%= @information_coverage.maximum_reference %>
+</p>
+
+<p>
+  <strong>Minimum premium reference:</strong>
+  <%= @information_coverage.minimum_premium_reference %>
+</p>
+
+<p>
+  <strong>Compulsory coverage:</strong>
+  <%= @information_coverage.compulsory_coverage %>
+</p>
+
+<p>
+  <strong>Type coverage:</strong>
+  <%= @information_coverage.type_coverage %>
+</p>
+
+<p>
+  <strong>Description franchise:</strong>
+  <%= @information_coverage.description_franchise %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @information_coverage.status %>
+</p>
+
+<p>
+  <strong>Date status:</strong>
+  <%= @information_coverage.date_status %>
+</p>
+
+<p>
+  <strong>Composition product:</strong>
+  <%= @information_coverage.composition_product %>
+</p>
+
+<%= link_to 'Edit', edit_information_coverage_path(@information_coverage) %> |
+<%= link_to 'Back', information_coverages_path %>

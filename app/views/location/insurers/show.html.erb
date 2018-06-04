@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @location_group_branch.code %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @location_group_branch.description %>
+</p>
+
+<%= link_to 'Edit', edit_location_group_branch_path(@location_group_branch) %> |
+<%= link_to 'Back', location_group_branches_path %>

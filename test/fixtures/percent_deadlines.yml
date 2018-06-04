@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quantity_days: MyString
+  integer: MyString
+  percentage_aplided: MyString
+  decimal: MyString
+  deadline_short_long: MyString
+  references: MyString
+
+two:
+  quantity_days: MyString
+  integer: MyString
+  percentage_aplided: MyString
+  decimal: MyString
+  deadline_short_long: MyString
+  references: MyString

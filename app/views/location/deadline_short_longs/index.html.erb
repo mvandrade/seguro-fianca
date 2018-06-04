@@ -1,0 +1,92 @@
+<div style="min-height: 550px;">
+  <div class="row">
+      <div class="col-lg-12">
+          <h4 class="page-header">Prazo Curto e Longo</h4>
+      </div>
+      <!-- /.col-lg-12 -->
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-heading col-lg-11" style="height: 50px" >
+          Prazos Cuto e Longo
+        </div>
+        <div class="panel-heading col-lg-1" style="height: 50px">
+          <%= link_to new_location_deadline_short_long_path, class: 'btn btn-default btn-circle pull-right' do %>
+            <i class="fa fa-plus"></i>
+          <% end %>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+          <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+              <div class="col-sm-6" style="margin-top: 10px">
+                  <label>Mostrar
+                    <select name="dataTables-example_length" aria-controls="dataTables-example" class="form-control input-sm">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select> linhas
+                  </label>
+              </div>
+              <div class="col-sm-6" style="margin-top: 10px">
+                <div id="dataTables-example_filter" class="dataTables_filter">
+                  <label>Buscar:
+                    <input class="form-control input-sm" placeholder="" aria-controls="dataTables-example" type="search">
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;" width="100%">
+                  <thead>
+                    <tr role="row">
+                      <th>#</th>
+                      <th>Código</th>
+                      <th>Descrição</td>
+                      <th>Situação</th>
+                      <th>Data Situação</th>
+                      <th colspan="2">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @deadline_short_longs.each do |deadline_short_long| %>
+                      <tr class="gradeA odd" role="row">
+                        <td><%= deadline_short_long.id %></td>
+                        <td><%= deadline_short_long.code %></td>
+                        <td><%= deadline_short_long.description %></td>
+                        <td><%= deadline_short_long.status_i18n %></td>
+                        <td><%= deadline_short_long.date_status %></td>                         
+                        <td style="width: 65px">
+                          <%= link_to edit_location_deadline_short_long_path(deadline_short_long), class: "btn btn-default btn-circle" do %>
+                            <i class="fa fa-edit"></i>
+                          <% end%>
+                          <% if deadline_short_long.pendent? %>
+                            <%= link_to location_deadline_short_long_path(deadline_short_long), method: :delete,
+                            data: {confirm: "A informação da vigência da composição produto será escluido, confirma ?"},
+                            class:"btn btn-default btn-circle" do %>
+                              <i class="fa fa-trash-o"></i>
+                            <% end %>
+                          <% else %>
+                            <%= link_to location_deadline_short_long_path(deadline_short_long), method: :delete,
+                            data: {confirm: "A informação da vigência da composição produto será escluido, confirma ?"},
+                            class:"btn btn-default btn-circle disabled" do %>
+                              <i class="fa fa-trash-o"></i>
+                            <% end %>
+                          <% end%>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
