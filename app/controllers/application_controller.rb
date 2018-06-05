@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::Base
-  include DeviseTokenAuth::Concerns::SetUserByToken
- 
+
+  # protect_from_forgery with: :exception
+  # skip_before_action :verify_authenticity_token, if: -> {params[:controller].split('/')[0] == 'devise_token_auth'}
+  
+  protect_from_forgery with: :exception, if: :verify_api
+
+  def verify_api
+    params[:controller].split('/')[0] != 'devise_token_auth'
+  end
+  
   # Pundit
   include Pundit
  
