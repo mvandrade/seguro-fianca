@@ -44,6 +44,7 @@ gem 'foreman'
 
 gem 'devise'
 gem 'devise-i18n'
+gem 'devise_token_auth'
 
 # Template usado para o backoffice do site
 
@@ -77,6 +78,9 @@ gem 'enum_help'
 
 # Form Dinamico
 gem 'cocoon'
+
+# Acesso a outros dominios
+gem 'rack-cors'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

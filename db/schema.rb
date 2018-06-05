@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180528210239) do
+ActiveRecord::Schema.define(version: 20180604132151) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -119,24 +119,6 @@ ActiveRecord::Schema.define(version: 20180528210239) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name", limit: 50
-    t.index ["email"], name: "index_members_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
-  end
-
   create_table "percent_deadlines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "quantity_days"
     t.decimal "percentage_aplided", precision: 7, scale: 4
@@ -167,6 +149,30 @@ ActiveRecord::Schema.define(version: 20180528210239) do
     t.bigint "deadline_short_long_id"
     t.index ["branch_id"], name: "index_taxes_on_branch_id"
     t.index ["deadline_short_long_id"], name: "index_taxes_on_deadline_short_long_id"
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "auth_token"
+    t.string "provider", default: "email", null: false
+    t.string "uid", default: "", null: false
+    t.string "name"
+    t.text "tokens"
+    t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   add_foreign_key "branches", "group_branches"

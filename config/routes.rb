@@ -2,11 +2,15 @@ require 'site_version_constraint'
 
 Rails.application.routes.draw do
 
+  mount_devise_token_auth_for 'User', at: 'auth'
   
   root 'site/home#index'
 
-  namespace :site, defaults: {format: :json}, subdomain: `site`, path: "/" do
-    namespace :v1, path: "/", constraint: SiteVersionConstraint.new(version: 1, default: true) do
+  namespace :site, defaults: {format: :json}, constraints: {subdomain: 'site'}, path: '/' do
+    namespace :v1, path: '/', constraints: SiteVersionConstraint.new(version: 1, default: true) do
+      resources :users, only: [:show, :create, :update, :destroy]
+      resources :home, only: [:index]
+      resources :sessions, only: [:create]
     end
   end
 
@@ -46,7 +50,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins, :skip => [:registrations]
-  devise_for :members
+  # devise_for :users, only:[:sessions], controller: {sessions: 'site/v1/sessions'}
 
- 
 end
